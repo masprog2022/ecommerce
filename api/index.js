@@ -23,6 +23,6 @@ app.use(express.json())
 app.use("/api/auth", authRouter)
 //app.use("/api/users", userRouter)
 
-app.listen(5000, () => {
+app.listen(process.env.PORT ||5000, () => {
     console.log("Backend server is running!")
 })
