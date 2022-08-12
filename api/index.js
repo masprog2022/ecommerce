@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const authRouter = require('./routes/auth');
+const userRouter = require('./routes/user');
 
 
 //import userRouter from './routes/user.js'
@@ -21,7 +22,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => console.log("DB Connection Su
 app.use(cors());
 app.use(express.json())
 app.use("/api/auth", authRouter)
-//app.use("/api/users", userRouter)
+app.use("/api/users", userRouter)
 
 app.listen(process.env.PORT ||5000, () => {
     console.log("Backend server is running!")

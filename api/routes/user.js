@@ -1,17 +1,29 @@
-import { Router } from 'express'
+const User = require('../models/User');
+const {verifyTokenAndAuthorization } = require('./verifyToken');
 
-const router = Router()
+const router = require('express').Router();
+//UPDATE
+router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
+    if (req.body.password) {
+      req.body.password = CryptoJS.AES.encrypt(
+        req.body.password,
+        process.env.PASS_SEC
+      ).toString();
+    }
+  
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      res.status(200).json(updatedUser);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
-router.get("/test1", (req, res) => {
 
-    res.send("user test is successfull")
-
-})
-
-router.post("/test2", (req, res) =>{
-    const username = req.body.username
-    res.send("your username is: " + username)
-})
-
-
-export default router
+module.exports = router
