@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { mobile } from '../responsive'
+import { useSelector } from 'react-redux';
+import { Link } from "react-router-dom"
 
 
 const Container = styled.div`
@@ -69,31 +71,37 @@ const MenuItem = styled.div`
 
 
 const Navbar = () => {
-    return (
-        <Container>
-            <Wrapper>
-                <Left>
-                    <Language>PT</Language>
-                    <SearchContainer>
-                        <Input placeholder="Pesquisar" />
-                        <Search style={{ color: "gray", fontSize: 16 }} />
-                    </SearchContainer>
-                </Left>
-                <Center>
-                    <Logo>Vanilda.</Logo>
-                </Center>
-                <Right>
-                    <MenuItem>REGISTRAR</MenuItem>
-                    <MenuItem>ENTRAR</MenuItem>
-                    <MenuItem>
-                        <Badge badgeContent={4} color="primary">
-                            <ShoppingCartOutlined />
-                        </Badge>
-                    </MenuItem>
-                </Right>
-            </Wrapper>
-        </Container>
-    )
+
+  const quantity = useSelector(state => state.cart.quantity)
+
+  console.log(quantity)
+  return (
+    <Container>
+      <Wrapper>
+        <Left>
+          <Language>PT</Language>
+          <SearchContainer>
+            <Input placeholder="Pesquisar" />
+            <Search style={{ color: "gray", fontSize: 16 }} />
+          </SearchContainer>
+        </Left>
+        <Center>
+          <Logo>Vanilda.</Logo>
+        </Center>
+        <Right>
+          <MenuItem>REGISTRAR</MenuItem>
+          <MenuItem>ENTRAR</MenuItem>
+          <Link to="/cart">
+            <MenuItem>
+              <Badge badgeContent={quantity} color="primary">
+                <ShoppingCartOutlined />
+              </Badge>
+            </MenuItem>
+          </Link>
+        </Right>
+      </Wrapper>
+    </Container>
+  )
 }
 
 export default Navbar
