@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
-    "@reduxjs/toolkit": "^1.8.4",
+    "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -16,6 +16,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "4.0.3",
     "react-stripe-checkout": "^2.6.3",
+    "redux-persist": "^6.0.0",
     "styled-components": "^5.3.5",
     "web-vitals": "^1.0.1"
   },
@@ -42,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/redux-persist": "^4.3.1"
   }
 }

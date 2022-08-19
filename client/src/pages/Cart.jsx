@@ -196,8 +196,8 @@ const Cart = () => {
           tokenId: stripeToken.id,
           amount: 500,
         });
-       navigate("/success", {data:res.data})
-      // console.log({data: res.data})
+       navigate("/success")
+       console.log({data: res.data})
       } catch (err) {
         console.log(err);
       }
@@ -281,8 +281,6 @@ const Cart = () => {
             token={onToken}
             stripeKey={KEY}
             >
-
-          
             <Button>CHECKOUT AGORA</Button>
             </StripeCheckout>
           </Summary>
